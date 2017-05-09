@@ -1,5 +1,6 @@
 class GithubUser
 
+  attr_reader :name, :avatar_url, :followers_url, :following_url, :starred_url
 
   def initialize(attrs = {})
     @attrs = attrs
@@ -10,27 +11,9 @@ class GithubUser
     @starred_url = attrs[:starred_url]
   end
 
-  # def self.find_all_by(filter = {})
-  # SunlightService.legislators_by(filter).map do |raw_legislator|
-  #   new(raw_legislator)
-  # end
-
-   def new_user(access_token)
-     GithubService.get_user(access_token).map do |raw_user|
-       new(raw_user)
-   end
-end
+  def self.create_github_user(access_token)
+    raw_user = GithubService.get_user(access_token)
+    new(raw_user)
+  end
 
 end
-
-
-
-# it 'it returns basic information for a user' do
-#   token = '41114ffaab211c22633528a1cfaaef29cd6c2041'
-#   githubuser = GithubUser.new(token)
-#
-#   expect(githubuser.name).to eq("Stephanie Bentley")
-#   expect(githubuser.avatar_url).to eq("https://avatars3.githubusercontent.com/u/21252193?v=3")
-#   expect(githubuser.followers_url).to eq("https://api.github.com/users/slague/followers")
-#   expect(githubuser.following_url).to eq("https://api.github.com/users/slague/followers")
-#   expect(githubuser.starred_url).to eq("https://api.github.com/users/slague/starred{/owner}{/repo}")
