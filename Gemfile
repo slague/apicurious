@@ -28,11 +28,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'faraday'
 gem 'figaro'
 gem 'omniauth-github'
+gem 'rspec-rails'
 
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
+  gem 'capybara'
 end
 
 group :development do
