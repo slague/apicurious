@@ -1,0 +1,11 @@
+<h1>Home page<h1>
+
+
+  <h2><% if current_user %>
+    Hello, <%= current_user.name %><br>
+    <%= link_to "Logout", logout_path, method: :delete %>
+    <% else %>
+    <%= link_to "Sign in with Github", github_login_path %>
+  <% end %></h2>
+
+   <!-- current_user.avatar_url -->
