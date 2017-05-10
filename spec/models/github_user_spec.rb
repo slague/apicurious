@@ -21,7 +21,7 @@ describe GithubUser do
       followers = github_user.followers(access_token)
       robo = followers.first
 
-      expect(followers.count).to eq(6)
+      expect(followers).to be_an(Array)
       expect(robo.login).to eq("ideashower")
     end
   end
