@@ -9,5 +9,8 @@
                       <%= followed.login  %>
                       <% end  %>
 <h3>You have (<%= @github_user.number_of_starred_repos(current_user.oauth_token) %>) starred repos</h3>
+<h3>Your repositories: <% @github_user.repos(current_user.oauth_token).each do |repo| %></h3>
+                      <%= repo.name %><br>
+                      <% end %>
 <h2><%= link_to "Logout", logout_path, method: :delete %></h2>
 <h2><%= link_to "Home page", root_path %></h2>

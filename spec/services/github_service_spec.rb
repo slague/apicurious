@@ -60,7 +60,19 @@ describe GithubService do
       expect(first_repo).to have_key(:name)
       expect(first_repo[:name]).to be_a(String)
       expect(first_repo[:name]).to eq("apicurious")
+    end
+  end
+  context '.find_repos' do
+    it 'returns a collection of repos' do
+      access_token = ENV['github_oauth_token']
+      repos = GithubService.find_repos(access_token)
+      repo = repos.first
 
+      expect(repos).to be_an(Array)
+      expect(repo).to be_a(Hash)
+
+      expect(repo).to have_key(:name)
+      expect(repo[:name]).to be_a(String)
     end
   end
 end

@@ -46,4 +46,15 @@ describe GithubUser do
       expect(count).to eq(1)
     end
   end
+  context '#repos' do
+    it 'returns a collection of repos for a github_user' do
+      access_token = ENV['github_oauth_token']
+      github_user = GithubUser.create_github_user(access_token)
+      repos = github_user.repos(access_token)
+      repo = repos.first
+
+      expect(repos).to be_an(Array)
+      expect(repo.name).to eq("wellness_tracker")
+    end
+  end
 end

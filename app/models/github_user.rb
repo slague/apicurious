@@ -30,7 +30,13 @@ class GithubUser
   end
 
   def number_of_starred_repos(access_token)
-    count = GithubService.find_starred_repos(access_token).count
-    count
+    GithubService.find_starred_repos(access_token).count
   end
+
+  def repos(access_token)
+    GithubService.find_repos(access_token).map do |raw_repo|
+    Repo.new(raw_repo)
+    end
+  end
+
 end

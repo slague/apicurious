@@ -25,6 +25,10 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def self.find_repos(access_token)
+    response = Faraday.get("https://api.github.com/user/repos?access_token=#{access_token}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
   # private
   #   def conn
   #     @_conn
