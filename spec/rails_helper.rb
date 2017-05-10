@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -25,6 +26,28 @@ require 'capybara/rails'
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+    provider: 'github',
+    extra: {
+      raw_info: {
+        uid: "1234",
+        name: "Stephanie Bentley"
+      }
+    },
+    credentials: {
+      token: ENV['github_oauth_token'],
+      secret: "secretpizza"
+    },
+    info: {
+      nickname: "slague"
+    }
+    })
+end
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

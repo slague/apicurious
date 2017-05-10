@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do
