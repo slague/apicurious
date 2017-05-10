@@ -21,6 +21,11 @@ class GithubUser
     GithubService.find_followers(access_token).map do |raw_follower|
       GithubUser.new(raw_follower)
     end
-    # this should return an arry of all GithubUser objects
+  end
+
+  def following(access_token)
+    GithubService.find_following(access_token).map do |raw_followed|
+      GithubUser.new(raw_followed)
+    end
   end
 end

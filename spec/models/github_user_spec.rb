@@ -25,4 +25,15 @@ describe GithubUser do
       expect(robo.login).to eq("ideashower")
     end
   end
+  context '#following' do
+    it 'returns a collection of github_users being followed' do
+      access_token = ENV['github_oauth_token']
+      github_user = GithubUser.create_github_user(access_token)
+      following = github_user.following(access_token)
+      person = following.first
+
+      expect(following).to be_an(Array)
+      expect(person.login).to eq("larquin")
+    end
+  end
 end

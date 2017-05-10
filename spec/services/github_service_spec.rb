@@ -25,16 +25,27 @@ describe GithubService do
   context '.find_followers' do
     it "returns followers" do
       access_token = ENV['github_oauth_token']
-      github_user = GithubService.get_user(access_token)
       followers = GithubService.find_followers(access_token)
       follower = followers.first
 
       expect(followers).to be_an(Array)
-      expect(followers.count).to eq(6)
       expect(follower).to be_a(Hash)
 
       expect(follower).to have_key(:login)
       expect(follower[:login]).to be_a(String)
+    end
+  end
+  context '.find_following' do
+    it 'returns those being followed' do
+      access_token = ENV['github_oauth_token']
+      following = GithubService.find_following(access_token)
+      first_followed = following.first
+
+      expect(following).to be_an(Array)
+      expect(first_followed).to be_a(Hash)
+
+      expect(first_followed).to have_key(:login)
+      expect(first_followed[:login]).to be_a(String)
     end
   end
 end

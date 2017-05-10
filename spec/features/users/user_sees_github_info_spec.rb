@@ -21,6 +21,7 @@ describe "A user sees her github profile info after logging in" do
     expect(page).to have_content("Stephanie Bentley")
     expect(page).to have_css("img[src='https://avatars3.githubusercontent.com/u/21252193?v=3']")
     expect(page).to have_content("Your followers:")
+    expect(page).to have_content("You are following:")
     # expect(page).to have_content(githubuser.followers_url) a link with number of follers
     # expect(page).to have_content(githubuser.following_url) a link with the number of following
     # expect(page).to have_content(githubuser.starred_url) a link with the number of starred repos

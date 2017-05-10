@@ -14,6 +14,12 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+
+  def self.find_following(access_token)
+    response = Faraday.get("https://api.github.com/user/following?access_token=#{access_token}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
   # private
   #   def conn
   #     @_conn
