@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 describe GithubUser do
-  context '.create_github_user(access_token)' do
+
+  attr_reader :access_token, :stubbed_user
+  before do
+    @access_token = ENV['github_oauth_token']
+    @stubbed_user = {login: "slague", followers_url: "https://api.github.com/users/slague/followers",
+                        following_url: "https://api.github.com/users/slague/following{/other_user}",
+                        starred_url: "https://api.github.com/users/slague/starred{/owner}{/repo}",
+                        organizations_url: "https://api.github.com/users/slague/orgs",
+                        repos_url: "https://api.github.com/users/slague/repos",
+                        name: "Stephanie Bentley"}
+  end
+
+  context '.create_github_user(access_token)', vcr: true do
     it 'it builds a github_user with basic profile info' do
-    access_token = ENV['github_oauth_token']
     githubuser = GithubUser.create_github_user(access_token)
 
       expect(githubuser.name).to eq("Stephanie Bentley")
@@ -14,9 +25,12 @@ describe GithubUser do
       expect(githubuser.starred_url).to eq("https://api.github.com/users/slague/starred{/owner}{/repo}")
     end
   end
+
   context '#followers' do
     it 'returns a collection of followers' do
-      access_token = ENV['github_oauth_token']
+      stubbed_followers = [{login: "ideashower"}, {login: "larquin"}]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_followers).with(access_token).and_return(stubbed_followers)
       github_user = GithubUser.create_github_user(access_token)
       followers = github_user.followers(access_token)
       robo = followers.first
@@ -27,7 +41,9 @@ describe GithubUser do
   end
   context '#following' do
     it 'returns a collection of github_users being followed' do
-      access_token = ENV['github_oauth_token']
+      stubbed_following = [{login: "larquin"},{login: "ideashower"}]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_following).with(access_token).and_return(stubbed_following)
       github_user = GithubUser.create_github_user(access_token)
       following = github_user.following(access_token)
       person = following.first
@@ -38,7 +54,9 @@ describe GithubUser do
   end
   context '#number_of_starred_repos' do
     it 'counts the number of repos that have been starred' do
-      access_token = ENV['github_oauth_token']
+      stubbed_starred_repos = [{name: "apicurious"}]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_starred_repos).with(access_token).and_return(stubbed_starred_repos)
       github_user = GithubUser.create_github_user(access_token)
       count = github_user.number_of_starred_repos(access_token)
 
@@ -48,7 +66,9 @@ describe GithubUser do
   end
   context '#repos' do
     it 'returns a collection of repos for a github_user' do
-      access_token = ENV['github_oauth_token']
+      stubbed_repos = [{name: "wellness_tracker"}, {name: "rails_engine"}]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_repos).with(access_token).and_return(stubbed_repos)
       github_user = GithubUser.create_github_user(access_token)
       repos = github_user.repos(access_token)
       repo = repos.first

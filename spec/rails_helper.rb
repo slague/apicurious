@@ -7,6 +7,15 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 
+
+VCR.configure do |config|
+  config.configure_rspec_metadata!
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  config.filter_sensitive_data('<GITHUB_KEY>') { ENV['GITHUB_CLIENT_ID']}
+  config.filter_sensitive_data('<GITHUB_SECRET>') { ENV['GITHUB_SECRET']}
+  config.filter_sensitive_data('<GITHUB_TOKEN>') { ENV['github_oauth_token']}
+end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

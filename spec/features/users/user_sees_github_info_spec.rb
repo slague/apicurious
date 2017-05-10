@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "A user sees her github profile info after logging in" do
-  scenario "when they log in with github" do
+  scenario "when they log in with github", vcr: true do
 
     # access_token = ENV['github_oauth_token']
     # githubuser = GithubUser.create_github_user(access_token)
@@ -20,11 +20,9 @@ describe "A user sees her github profile info after logging in" do
     expect(page).to have_content("slague")
     expect(page).to have_content("Stephanie Bentley")
     expect(page).to have_css("img[src='https://avatars3.githubusercontent.com/u/21252193?v=3']")
-    expect(page).to have_content("Your followers:")
-    expect(page).to have_content("You are following:")
-    # expect(page).to have_content(githubuser.followers_url) a link with number of follers
-    # expect(page).to have_content(githubuser.following_url) a link with the number of following
-    # expect(page).to have_content(githubuser.starred_url) a link with the number of starred repos
-
+    expect(page).to have_content("Followers")
+    expect(page).to have_content("Following")
+    expect(page).to have_content("Stars")
+    expect(page).to have_content("Organizations")
   end
 end

@@ -1,6 +1,6 @@
 class GithubUser
 
-  attr_reader :name, :login, :avatar_url, :followers_url, :following_url, :starred_url
+  attr_reader :name, :login, :avatar_url, :followers_url, :following_url, :starred_url, :organizations_url
 
   def initialize(attrs = {})
     @attrs = attrs
@@ -10,6 +10,7 @@ class GithubUser
     @followers_url = attrs[:followers_url]
     @following_url = attrs[:following_url]
     @starred_url = attrs[:starred_url]
+    @organizations_url = attrs[:organizations_url]
   end
 
   def self.create_github_user(access_token)

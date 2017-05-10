@@ -1,28 +1,28 @@
 require 'rails_helper'
 
 describe GithubService do
-  context '.get_user' do
+  context '.get_user', vcr: true do
     it 'returns a raw user' do
-      access_token = ENV['github_oauth_token']
-      githubuser = GithubService.get_user(access_token)
+        access_token = ENV['github_oauth_token']
+        githubuser = GithubService.get_user(access_token)
 
-      expect(githubuser).to be_a(Hash)
-      expect(githubuser).to have_key(:name)
-      expect(githubuser).to have_key(:login)
-      expect(githubuser).to have_key(:avatar_url)
-      expect(githubuser).to have_key(:followers_url)
-      expect(githubuser).to have_key(:following_url)
-      expect(githubuser).to have_key(:starred_url)
-      expect(githubuser[:name]).to be_a(String)
-      expect(githubuser[:login]).to be_a(String)
-      expect(githubuser[:avatar_url]).to be_a(String)
-      expect(githubuser[:followers_url]).to be_a(String)
-      expect(githubuser[:following_url]).to be_a(String)
-      expect(githubuser[:starred_url]).to be_a(String)
+        expect(githubuser).to be_a(Hash)
+        expect(githubuser).to have_key(:name)
+        expect(githubuser).to have_key(:login)
+        expect(githubuser).to have_key(:avatar_url)
+        expect(githubuser).to have_key(:followers_url)
+        expect(githubuser).to have_key(:following_url)
+        expect(githubuser).to have_key(:starred_url)
+        expect(githubuser[:name]).to be_a(String)
+        expect(githubuser[:login]).to be_a(String)
+        expect(githubuser[:avatar_url]).to be_a(String)
+        expect(githubuser[:followers_url]).to be_a(String)
+        expect(githubuser[:following_url]).to be_a(String)
+        expect(githubuser[:starred_url]).to be_a(String)
+      end
     end
-  end
 
-  context '.find_followers' do
+  context '.find_followers', vcr: true do
     it "returns followers" do
       access_token = ENV['github_oauth_token']
       followers = GithubService.find_followers(access_token)
@@ -35,7 +35,7 @@ describe GithubService do
       expect(follower[:login]).to be_a(String)
     end
   end
-  context '.find_following' do
+  context '.find_following', vcr: true do
     it 'returns those being followed' do
       access_token = ENV['github_oauth_token']
       following = GithubService.find_following(access_token)
@@ -48,7 +48,7 @@ describe GithubService do
       expect(first_followed[:login]).to be_a(String)
     end
   end
-  context '.find_starred_repos' do
+  context '.find_starred_repos', vcr: true do
     it 'finds and counts the number of starred repos' do
       access_token = ENV['github_oauth_token']
       starred_repos = GithubService.find_starred_repos(access_token)
@@ -62,7 +62,7 @@ describe GithubService do
       expect(first_repo[:name]).to eq("apicurious")
     end
   end
-  context '.find_repos' do
+  context '.find_repos', vcr: true do
     it 'returns a collection of repos' do
       access_token = ENV['github_oauth_token']
       repos = GithubService.find_repos(access_token)
@@ -75,7 +75,7 @@ describe GithubService do
       expect(repo[:name]).to be_a(String)
     end
   end
-  context '.find_repos' do
+  context '.find_repos', vcr: true do
     it 'returns a collection of organizations' do
       access_token = ENV['github_oauth_token']
       orgs = GithubService.find_organizaitons(access_token)
@@ -83,9 +83,6 @@ describe GithubService do
 
       expect(orgs).to be_an(Array)
       # expect(org).to be_a(Hash)
-
-      # expect(repo).to have_key(:name)
-      # expect(repo[:name]).to be_a(String)
     end
   end
-end
+  end
