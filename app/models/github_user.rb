@@ -39,4 +39,9 @@ class GithubUser
     end
   end
 
+  def organizations(access_token)
+    GithubService.find_organizaitons(access_token).map do |raw_org|
+      Organization.new(raw_org)
+    end
+  end
 end

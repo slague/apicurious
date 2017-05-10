@@ -29,6 +29,7 @@ gem 'faraday'
 gem 'figaro'
 gem 'omniauth-github'
 gem 'rspec-rails'
+gem 'materialize-sass'
 
 
 group :development, :test do

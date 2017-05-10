@@ -75,4 +75,17 @@ describe GithubService do
       expect(repo[:name]).to be_a(String)
     end
   end
+  context '.find_repos' do
+    it 'returns a collection of organizations' do
+      access_token = ENV['github_oauth_token']
+      orgs = GithubService.find_organizaitons(access_token)
+      org = orgs.first
+
+      expect(orgs).to be_an(Array)
+      # expect(org).to be_a(Hash)
+
+      # expect(repo).to have_key(:name)
+      # expect(repo[:name]).to be_a(String)
+    end
+  end
 end
