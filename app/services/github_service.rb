@@ -33,7 +33,12 @@ class GithubService
   def self.find_organizaitons(access_token)
     response = Faraday.get("https://api.github.com/user/orgs?access_token=#{access_token}")
     JSON.parse(response.body, symbolize_names: true)
-  end 
+  end
+
+  def self.find_events(login)
+    response = Faraday.get("https://api.github.com/users/#{login}/events")
+    JSON.parse(response.body, symbolize_names: true)
+  end
   # private
   #   def conn
   #     @_conn

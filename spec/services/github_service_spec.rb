@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 describe GithubService do
+  attr_reader :access_token
+  before do
+    @access_token = ENV['github_oauth_token']
+  end
   context '.get_user', vcr: true do
     it 'returns a raw user' do
-        access_token = ENV['github_oauth_token']
         githubuser = GithubService.get_user(access_token)
 
         expect(githubuser).to be_a(Hash)
@@ -24,7 +27,6 @@ describe GithubService do
 
   context '.find_followers', vcr: true do
     it "returns followers" do
-      access_token = ENV['github_oauth_token']
       followers = GithubService.find_followers(access_token)
       follower = followers.first
 
@@ -37,7 +39,6 @@ describe GithubService do
   end
   context '.find_following', vcr: true do
     it 'returns those being followed' do
-      access_token = ENV['github_oauth_token']
       following = GithubService.find_following(access_token)
       first_followed = following.first
 
@@ -50,7 +51,6 @@ describe GithubService do
   end
   context '.find_starred_repos', vcr: true do
     it 'finds and counts the number of starred repos' do
-      access_token = ENV['github_oauth_token']
       starred_repos = GithubService.find_starred_repos(access_token)
       first_repo = starred_repos.first
 
@@ -64,7 +64,6 @@ describe GithubService do
   end
   context '.find_repos', vcr: true do
     it 'returns a collection of repos' do
-      access_token = ENV['github_oauth_token']
       repos = GithubService.find_repos(access_token)
       repo = repos.first
 
@@ -77,7 +76,6 @@ describe GithubService do
   end
   context '.find_repos', vcr: true do
     it 'returns a collection of organizations' do
-      access_token = ENV['github_oauth_token']
       orgs = GithubService.find_organizaitons(access_token)
       org = orgs.first
 
@@ -85,4 +83,20 @@ describe GithubService do
       # expect(org).to be_a(Hash)
     end
   end
+  context '.find_events', vcr: true do
+    it 'returns a collection of events' do
+      github_user = GithubUser.create_github_user(access_token)
+      events = GithubService.find_events(github_user.login)
+      event = events.first
+
+      expect(events).to be_an(Array)
+      expect(event).to be_a(Hash)
+
+      expect(event).to have_key(:type)
+      expect(event[:type]).to be_a(String)
+      expect(event).to have_key(:repo)
+      expect(event[:repo]).to be_a(Hash)
+    end
+
   end
+end

@@ -18,6 +18,9 @@
     <% @github_user.following(current_user.oauth_token).each do |followed| %></h3>
                       <%= followed.login  %>
                       <% end  %>
-<h3>Organizations <%= @github_user.organizations(current_user.oauth_token).count %></h3>                      
+<h3>Recent Activity<h3>   <% @github_user.events.each do |event| %></h3>
+                      <%= event.repo[:name]%>, <%= event.type%>, <%= event.date %><br>
+                      <% end %>
+<h3>Organizations <%= @github_user.organizations(current_user.oauth_token).count %></h3>
 <h2><%= link_to "Logout", logout_path, method: :delete %></h2>
 <h2><%= link_to "Home page", root_path %></h2>

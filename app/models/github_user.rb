@@ -1,6 +1,6 @@
 class GithubUser
 
-  attr_reader :name, :login, :avatar_url, :followers_url, :following_url, :starred_url, :organizations_url
+  attr_reader :name, :login, :avatar_url, :followers_url, :following_url, :starred_url, :organizations_url, :events_url
 
   def initialize(attrs = {})
     @attrs = attrs
@@ -11,6 +11,7 @@ class GithubUser
     @following_url = attrs[:following_url]
     @starred_url = attrs[:starred_url]
     @organizations_url = attrs[:organizations_url]
+    @events_url = attrs[:events_url]
   end
 
   def self.create_github_user(access_token)
@@ -43,6 +44,12 @@ class GithubUser
   def organizations(access_token)
     GithubService.find_organizaitons(access_token).map do |raw_org|
       Organization.new(raw_org)
+    end
+  end
+
+  def events
+    GithubService.find_events(login).map do |raw_event|
+      Event.new(raw_event)
     end
   end
 end

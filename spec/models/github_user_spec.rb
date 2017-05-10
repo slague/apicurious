@@ -12,7 +12,6 @@ describe GithubUser do
                         repos_url: "https://api.github.com/users/slague/repos",
                         name: "Stephanie Bentley"}
   end
-
   context '.create_github_user(access_token)', vcr: true do
     it 'it builds a github_user with basic profile info' do
     githubuser = GithubUser.create_github_user(access_token)
@@ -25,7 +24,6 @@ describe GithubUser do
       expect(githubuser.starred_url).to eq("https://api.github.com/users/slague/starred{/owner}{/repo}")
     end
   end
-
   context '#followers' do
     it 'returns a collection of followers' do
       stubbed_followers = [{login: "ideashower"}, {login: "larquin"}]
@@ -52,6 +50,7 @@ describe GithubUser do
       expect(person.login).to eq("larquin")
     end
   end
+
   context '#number_of_starred_repos' do
     it 'counts the number of repos that have been starred' do
       stubbed_starred_repos = [{name: "apicurious"}]
@@ -75,6 +74,23 @@ describe GithubUser do
 
       expect(repos).to be_an(Array)
       expect(repo.name).to eq("wellness_tracker")
+    end
+  end
+  context '#events' do
+    it 'returns a collection of events for a github_user' do
+      stubbed_events = [{type: "PullRequestEvent", name: "slague/apicurious"}, {type: "CreateEvent", name: "slague/apicurious"}]
+
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_events).with('slague').and_return(stubbed_events)
+
+      github_user = GithubUser.create_github_user(access_token)
+      events = github_user.events
+      event = events.first
+      event2 = events.second
+
+      expect(events).to be_an(Array)
+      expect(event.type).to eq("PullRequestEvent")
+      expect(event2.type).to eq("CreateEvent")
     end
   end
 end
