@@ -28,4 +28,9 @@ class GithubUser
       GithubUser.new(raw_followed)
     end
   end
+
+  def number_of_starred_repos(access_token)
+    count = GithubService.find_starred_repos(access_token).count
+    count
+  end
 end

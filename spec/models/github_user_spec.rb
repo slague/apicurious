@@ -36,4 +36,14 @@ describe GithubUser do
       expect(person.login).to eq("larquin")
     end
   end
+  context '#number_of_starred_repos' do
+    it 'counts the number of repos that have been starred' do
+      access_token = ENV['github_oauth_token']
+      github_user = GithubUser.create_github_user(access_token)
+      count = github_user.number_of_starred_repos(access_token)
+
+      expect(count).to be_a(Fixnum)
+      expect(count).to eq(1)
+    end
+  end
 end

@@ -48,4 +48,19 @@ describe GithubService do
       expect(first_followed[:login]).to be_a(String)
     end
   end
+  context '.find_starred_repos' do
+    it 'finds and counts the number of starred repos' do
+      access_token = ENV['github_oauth_token']
+      starred_repos = GithubService.find_starred_repos(access_token)
+      first_repo = starred_repos.first
+byebug
+      expect(starred_repos).to be_an(Array)
+      expect(first_repo).to be_a(Hash)
+
+      expect(first_repo).to have_key(:name)
+      expect(first_repo[:name]).to be_a(String)
+      expect(first_repo[:name]).to eq("apicurious")
+
+    end
+  end
 end
