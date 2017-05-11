@@ -94,4 +94,24 @@ describe GithubUser do
       expect(event2.type).to eq("CreateEvent")
     end
   end
+  context '#commits' do
+    it 'returns a collection of commits for a github user' do
+      stubbed_events = [ {
+                      type: "PushEvent", name: "slague/apicurious",
+                      payload: { commits: [ {message: "add images"} ] }
+                    },
+                    { type: "PushEvent", name: "slague/apicurious",
+                      payload: { commits: [ {message: "fix errors"} ] }
+                    }
+                  ]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_events).with('slague', access_token).and_return(stubbed_events)
+
+      github_user = GithubUser.create_github_user(access_token)
+      commits = github_user.commits(access_token)
+
+      expect(commits).to be_an(Array)
+
+    end
+  end
 end

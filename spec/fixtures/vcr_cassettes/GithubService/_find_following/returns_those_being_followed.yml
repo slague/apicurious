@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 May 2017 16:44:34 GMT
+      - Thu, 11 May 2017 19:55:49 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -31,9 +31,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4936'
+      - '4208'
       X-Ratelimit-Reset:
-      - '1494524228'
+      - '1494533182'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -65,12 +65,12 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Served-By:
-      - 3e3b9690823fb031da84658eb58aa83b
+      - 10ea50bffaded85949561216def301f3
       X-Github-Request-Id:
-      - C61A:4005:7D4BF33:9C157B0:591494F1
+      - DF95:3FFB:834D092:A36B489:5914C1C5
     body:
       encoding: ASCII-8BIT
       string: '[{"login":"larquin","id":96180,"avatar_url":"https://avatars0.githubusercontent.com/u/96180?v=3","gravatar_id":"","url":"https://api.github.com/users/larquin","html_url":"https://github.com/larquin","followers_url":"https://api.github.com/users/larquin/followers","following_url":"https://api.github.com/users/larquin/following{/other_user}","gists_url":"https://api.github.com/users/larquin/gists{/gist_id}","starred_url":"https://api.github.com/users/larquin/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/larquin/subscriptions","organizations_url":"https://api.github.com/users/larquin/orgs","repos_url":"https://api.github.com/users/larquin/repos","events_url":"https://api.github.com/users/larquin/events{/privacy}","received_events_url":"https://api.github.com/users/larquin/received_events","type":"User","site_admin":false},{"login":"ideashower","id":188963,"avatar_url":"https://avatars1.githubusercontent.com/u/188963?v=3","gravatar_id":"","url":"https://api.github.com/users/ideashower","html_url":"https://github.com/ideashower","followers_url":"https://api.github.com/users/ideashower/followers","following_url":"https://api.github.com/users/ideashower/following{/other_user}","gists_url":"https://api.github.com/users/ideashower/gists{/gist_id}","starred_url":"https://api.github.com/users/ideashower/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/ideashower/subscriptions","organizations_url":"https://api.github.com/users/ideashower/orgs","repos_url":"https://api.github.com/users/ideashower/repos","events_url":"https://api.github.com/users/ideashower/events{/privacy}","received_events_url":"https://api.github.com/users/ideashower/received_events","type":"User","site_admin":false},{"login":"Carmer","id":9501766,"avatar_url":"https://avatars0.githubusercontent.com/u/9501766?v=3","gravatar_id":"","url":"https://api.github.com/users/Carmer","html_url":"https://github.com/Carmer","followers_url":"https://api.github.com/users/Carmer/followers","following_url":"https://api.github.com/users/Carmer/following{/other_user}","gists_url":"https://api.github.com/users/Carmer/gists{/gist_id}","starred_url":"https://api.github.com/users/Carmer/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Carmer/subscriptions","organizations_url":"https://api.github.com/users/Carmer/orgs","repos_url":"https://api.github.com/users/Carmer/repos","events_url":"https://api.github.com/users/Carmer/events{/privacy}","received_events_url":"https://api.github.com/users/Carmer/received_events","type":"User","site_admin":false},{"login":"BethKnight1234","id":10760057,"avatar_url":"https://avatars0.githubusercontent.com/u/10760057?v=3","gravatar_id":"","url":"https://api.github.com/users/BethKnight1234","html_url":"https://github.com/BethKnight1234","followers_url":"https://api.github.com/users/BethKnight1234/followers","following_url":"https://api.github.com/users/BethKnight1234/following{/other_user}","gists_url":"https://api.github.com/users/BethKnight1234/gists{/gist_id}","starred_url":"https://api.github.com/users/BethKnight1234/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/BethKnight1234/subscriptions","organizations_url":"https://api.github.com/users/BethKnight1234/orgs","repos_url":"https://api.github.com/users/BethKnight1234/repos","events_url":"https://api.github.com/users/BethKnight1234/events{/privacy}","received_events_url":"https://api.github.com/users/BethKnight1234/received_events","type":"User","site_admin":false},{"login":"jalague","id":14021856,"avatar_url":"https://avatars2.githubusercontent.com/u/14021856?v=3","gravatar_id":"","url":"https://api.github.com/users/jalague","html_url":"https://github.com/jalague","followers_url":"https://api.github.com/users/jalague/followers","following_url":"https://api.github.com/users/jalague/following{/other_user}","gists_url":"https://api.github.com/users/jalague/gists{/gist_id}","starred_url":"https://api.github.com/users/jalague/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jalague/subscriptions","organizations_url":"https://api.github.com/users/jalague/orgs","repos_url":"https://api.github.com/users/jalague/repos","events_url":"https://api.github.com/users/jalague/events{/privacy}","received_events_url":"https://api.github.com/users/jalague/received_events","type":"User","site_admin":false},{"login":"NatBee","id":21061091,"avatar_url":"https://avatars0.githubusercontent.com/u/21061091?v=3","gravatar_id":"","url":"https://api.github.com/users/NatBee","html_url":"https://github.com/NatBee","followers_url":"https://api.github.com/users/NatBee/followers","following_url":"https://api.github.com/users/NatBee/following{/other_user}","gists_url":"https://api.github.com/users/NatBee/gists{/gist_id}","starred_url":"https://api.github.com/users/NatBee/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/NatBee/subscriptions","organizations_url":"https://api.github.com/users/NatBee/orgs","repos_url":"https://api.github.com/users/NatBee/repos","events_url":"https://api.github.com/users/NatBee/events{/privacy}","received_events_url":"https://api.github.com/users/NatBee/received_events","type":"User","site_admin":false}]'
     http_version: 
-  recorded_at: Thu, 11 May 2017 16:44:34 GMT
+  recorded_at: Thu, 11 May 2017 19:55:49 GMT
 recorded_with: VCR 3.0.3

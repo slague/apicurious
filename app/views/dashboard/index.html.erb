@@ -2,7 +2,9 @@
   <div class="container">
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><img class="materialboxed" width="75" src="http://assets.plan.io/images/illustrations/github-integration.jpg"></li>
         <li><input type="text" name="term" id="robot" placeholder="Search Github" value="" class="ui-autocomplete-input" autocomplete="off"></li>
+
         <li><a href="#">Pull requests</a></li>
         <li><a href="#">Issues</a></li>
         <li><a href="#">Gist</a></li>
@@ -74,7 +76,7 @@
 
           <div class="col m5 12"><h6><strong>Recent Activity</h6></div><br><br>
 
-                                <% @github_user.events(current_user.oauth_token).first(6).each do |event| %>
+                                <% @github_user.events(current_user.oauth_token).first(4).each do |event| %>
             <div class="col s12 m5">
             <div class="card horizontal">
               <div class="card-stacked">
@@ -93,5 +95,35 @@
   </div>
 
   <div class="row">
-     <div class="col s6 offset-s3"><img width="650" src="https://i.stack.imgur.com/ElvLA.png"></div>
-   </div>
+    <div class="col s6 offset-s3"><img width="650" src="https://i.stack.imgur.com/ElvLA.png"></div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col s6 offset-s3">
+    <h6><%= @github_user.commits(current_user.oauth_token).count %> Recent Commits<hr></h6>
+     <% @github_user.commits(current_user.oauth_token).each do |commit| %>
+      "<%= commit %>"<br><br>
+    <% end %>
+    <p></p>
+  </div>
+
+  <br>
+  <p>&nbsp;&nbsp;</p>
+  <br>
+  
+
+  <div class="row">
+    <div class="col s6 offset-s3">
+       <h6>Recent commits made by Github users you follow<hr></h6>
+       <% @github_user.following(current_user.oauth_token).each do |user| %>
+        <p>Username: <%= user.login %></p>
+        <% user.commits(current_user.oauth_token).each do |commit| %>
+        <h6>"<%= commit %>"</h6><br>
+        <% end %><br><br>
+      <% end %><br>
+    </div>
+
+
+</div>

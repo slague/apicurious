@@ -54,4 +54,16 @@ class GithubUser
       Event.new(raw_event)
     end
   end
+
+  def commits(access_token)
+      push_events = []
+      events(access_token).each do |event|
+         push_events << event if event.type == "PushEvent"
+      end
+      payload_array = push_events.map do |event|
+        event.payload
+      end
+      payload_array.map { |each_hash| each_hash[:commits].first[:message] }
+  end
+
 end
