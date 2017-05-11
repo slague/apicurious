@@ -66,4 +66,6 @@ class GithubUser
       payload_array.map { |each_hash| each_hash[:commits].first[:message] }
   end
 
+
+
 end
