@@ -1,26 +1,63 @@
-<%= image_tag "#{@github_user.avatar_url}" %>
-<h2> <%= @github_user.name %></h2>
-<h3><%= @github_user.login %></h3>
+<nav>
+  <div class="container">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><input type="text" name="term" id="robot" placeholder="Search Github" value="" class="ui-autocomplete-input" autocomplete="off"></li>
+        <li><a href="sass.html">Pull requests</a></li>
+        <li><a href="badges.html">Issues</a></li>
+        <li><a href="collapsible.html">Gist</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
+<div class="row">
+</div>
 
-<h3>Repositories <%= @github_user.repos(current_user.oauth_token).count %>
-  <% @github_user.repos(current_user.oauth_token).each do |repo| %></h3>
-<%= repo.name %><br>
-<% end %>
+<div class="container">
+  <div class="row">
 
-<h3>Stars <%= @github_user.number_of_starred_repos(current_user.oauth_token) %></h3>
+   <div class="col m3 s12">
+     <img class="materialboxed" width="250" src="<%=@github_user.avatar_url%>">
+     <h5> <%= @github_user.name %></h5>
+     <h5><%= @github_user.login %></h5>
+     <h6>Organizations <%= @github_user.organizations(current_user.oauth_token).count %></h6>
+     <h6><%= link_to "Logout", logout_path, method: :delete %></h6>
+     <h6><%= link_to "Home page", root_path %></h6>
+   </div>
 
-<h3>Followers <%= @github_user.followers(current_user.oauth_token).count %>
-    <% @github_user.followers(current_user.oauth_token).each do |follower|  %></h3>
-                      <%= follower.login %>
-                      <% end %>
-<h3>Following <%= @github_user.following(current_user.oauth_token).count %></h3>
-    <% @github_user.following(current_user.oauth_token).each do |followed| %></h3>
-                      <%= followed.login  %>
-                      <% end  %>
-<h3>Recent Activity<h3>   <% @github_user.events.each do |event| %></h3>
-                      <%= event.repo[:name]%>, <%= event.type%>, <%= event.date %><br>
-                      <% end %>
-<h3>Organizations <%= @github_user.organizations(current_user.oauth_token).count %></h3>
-<h2><%= link_to "Logout", logout_path, method: :delete %></h2>
-<h2><%= link_to "Home page", root_path %></h2>
+    <div class="col m9 s12">
+
+      <div class="col m2 12"><h6><strong>Overview</div>
+      <div class="col m2 12"><h6><strong>Repositories <%= @github_user.repos(current_user.oauth_token).count %></h6></div>
+       <!--  @github_user.repos(current_user.oauth_token).each do |repo|
+       repo.name <br>
+        end  -->
+
+      <div class="col m2 12"><h6><strong>Stars <%= @github_user.number_of_starred_repos(current_user.oauth_token) %></h6></div>
+
+      <div class="col m2 12"><h6><strong>Followers <%= @github_user.followers(current_user.oauth_token).count %></h6></div>
+          <!-- @github_user.followers(current_user.oauth_token).each do |follower| </h6> -->
+                             <!-- follower.login -->
+                              <!-- end -->
+
+       <div class="col m2 12"><h6><strong>Following <%= @github_user.following(current_user.oauth_token).count %></h6></div>
+           <!-- @github_user.following(current_user.oauth_token).each do |followed| </h6>
+                             followed.login
+                              end  -->
+
+      </div>
+
+      <div class"row"></div>
+      <div class"row"></div>
+      <div class"row"></div>
+      <div class="divider"></div>
+
+        <div class="col m9 s12">
+          <div class="col m5 12"><h5><strong>Recent Activity</h5>
+                            <% @github_user.events.each do |event| %>
+                             <p><%= event.repo[:name]%>, <%= event.type%>, <%= event.date %></p><br>
+                             <% end %></div>
+    </div>
+  </div>
+</div>
