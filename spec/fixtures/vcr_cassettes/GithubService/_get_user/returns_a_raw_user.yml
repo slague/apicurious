@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 10 May 2017 18:29:11 GMT
+      - Thu, 11 May 2017 19:55:49 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -31,9 +31,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4979'
+      - '4210'
       X-Ratelimit-Reset:
-      - '1494441454'
+      - '1494533182'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -67,14 +67,14 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Served-By:
-      - e14705a23c085afeff5e104b1fc3922a
+      - eef8b8685a106934dcbb4b7c59fba0bf
       X-Github-Request-Id:
-      - DC6C:3FFB:7304AB8:8F41F22:59135BF7
+      - DF93:3FFB:834CFFE:A36B3D9:5914C1C4
     body:
       encoding: ASCII-8BIT
       string: '{"login":"slague","id":21252193,"avatar_url":"https://avatars3.githubusercontent.com/u/21252193?v=3","gravatar_id":"","url":"https://api.github.com/users/slague","html_url":"https://github.com/slague","followers_url":"https://api.github.com/users/slague/followers","following_url":"https://api.github.com/users/slague/following{/other_user}","gists_url":"https://api.github.com/users/slague/gists{/gist_id}","starred_url":"https://api.github.com/users/slague/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/slague/subscriptions","organizations_url":"https://api.github.com/users/slague/orgs","repos_url":"https://api.github.com/users/slague/repos","events_url":"https://api.github.com/users/slague/events{/privacy}","received_events_url":"https://api.github.com/users/slague/received_events","type":"User","site_admin":false,"name":"Stephanie
         Bentley","company":"@turingschool","blog":"","location":"Denver, Co ","email":"stephanielague@gmail.com","hireable":true,"bio":"Back-End
         Engineering Student","public_repos":40,"public_gists":15,"followers":6,"following":6,"created_at":"2016-08-26T01:01:53Z","updated_at":"2017-05-09T19:18:31Z"}'
     http_version: 
-  recorded_at: Wed, 10 May 2017 18:29:11 GMT
+  recorded_at: Thu, 11 May 2017 19:55:49 GMT
 recorded_with: VCR 3.0.3

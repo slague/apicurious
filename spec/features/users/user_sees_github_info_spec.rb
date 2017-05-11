@@ -18,6 +18,7 @@ describe "A user sees her github profile info after logging in" do
     expect(current_path).to eq(dashboard_index_path)
     expect(page).to have_link("Logout")
     expect(page).to have_content("slague")
+
     expect(page).to have_content("Stephanie Bentley")
     expect(page).to have_css("img[src='https://avatars3.githubusercontent.com/u/21252193?v=3']")
     expect(page).to have_content("Followers")

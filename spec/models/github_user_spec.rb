@@ -12,7 +12,6 @@ describe GithubUser do
                         repos_url: "https://api.github.com/users/slague/repos",
                         name: "Stephanie Bentley"}
   end
-
   context '.create_github_user(access_token)', vcr: true do
     it 'it builds a github_user with basic profile info' do
     githubuser = GithubUser.create_github_user(access_token)
@@ -25,7 +24,6 @@ describe GithubUser do
       expect(githubuser.starred_url).to eq("https://api.github.com/users/slague/starred{/owner}{/repo}")
     end
   end
-
   context '#followers' do
     it 'returns a collection of followers' do
       stubbed_followers = [{login: "ideashower"}, {login: "larquin"}]
@@ -52,16 +50,17 @@ describe GithubUser do
       expect(person.login).to eq("larquin")
     end
   end
-  context '#number_of_starred_repos' do
+
+  context '#starred_repos' do
     it 'counts the number of repos that have been starred' do
       stubbed_starred_repos = [{name: "apicurious"}]
       allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
       allow(GithubService).to receive(:find_starred_repos).with(access_token).and_return(stubbed_starred_repos)
       github_user = GithubUser.create_github_user(access_token)
-      count = github_user.number_of_starred_repos(access_token)
+      stars = github_user.starred_repos(access_token)
 
-      expect(count).to be_a(Fixnum)
-      expect(count).to eq(1)
+      expect(stars).to be_an(Array)
+      expect(stars.count).to eq(1)
     end
   end
   context '#repos' do
@@ -75,6 +74,44 @@ describe GithubUser do
 
       expect(repos).to be_an(Array)
       expect(repo.name).to eq("wellness_tracker")
+    end
+  end
+  context '#events' do
+    it 'returns a collection of events for a github_user' do
+      stubbed_events = [{type: "PullRequestEvent", name: "slague/apicurious"}, {type: "CreateEvent", name: "slague/apicurious"}]
+
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_events).with('slague', access_token).and_return(stubbed_events)
+
+      github_user = GithubUser.create_github_user(access_token)
+      events = github_user.events(access_token)
+
+      event = events.first
+      event2 = events.second
+
+      expect(events).to be_an(Array)
+      expect(event.type).to eq("PullRequestEvent")
+      expect(event2.type).to eq("CreateEvent")
+    end
+  end
+  context '#commits' do
+    it 'returns a collection of commits for a github user' do
+      stubbed_events = [ {
+                      type: "PushEvent", name: "slague/apicurious",
+                      payload: { commits: [ {message: "add images"} ] }
+                    },
+                    { type: "PushEvent", name: "slague/apicurious",
+                      payload: { commits: [ {message: "fix errors"} ] }
+                    }
+                  ]
+      allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
+      allow(GithubService).to receive(:find_events).with('slague', access_token).and_return(stubbed_events)
+
+      github_user = GithubUser.create_github_user(access_token)
+      commits = github_user.commits(access_token)
+
+      expect(commits).to be_an(Array)
+
     end
   end
 end

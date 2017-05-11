@@ -6,6 +6,18 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+require 'yaml'
+
+def new_token
+  #user.refresh_token
+  #open yml file
+  #set github_oauth_token to new token...
+
+   # Built in, no gem required
+  d = YAML::load_file('/config/application.yml') #Load
+  d['test']['github_oauth_token'] = #something like... user.refresh_token  OR could call GithubService method here...#Modify
+  File.open('/config/application.yml', 'w') {|f| f.write d.to_yaml } #Store
+end
 
 
 VCR.configure do |config|
