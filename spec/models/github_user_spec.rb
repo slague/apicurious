@@ -51,16 +51,16 @@ describe GithubUser do
     end
   end
 
-  context '#number_of_starred_repos' do
+  context '#starred_repos' do
     it 'counts the number of repos that have been starred' do
       stubbed_starred_repos = [{name: "apicurious"}]
       allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
       allow(GithubService).to receive(:find_starred_repos).with(access_token).and_return(stubbed_starred_repos)
       github_user = GithubUser.create_github_user(access_token)
-      count = github_user.number_of_starred_repos(access_token)
+      stars = github_user.starred_repos(access_token)
 
-      expect(count).to be_a(Fixnum)
-      expect(count).to eq(1)
+      expect(stars).to be_an(Array)
+      expect(stars.count).to eq(1)
     end
   end
   context '#repos' do
@@ -81,10 +81,11 @@ describe GithubUser do
       stubbed_events = [{type: "PullRequestEvent", name: "slague/apicurious"}, {type: "CreateEvent", name: "slague/apicurious"}]
 
       allow(GithubService).to receive(:get_user).with(access_token).and_return(stubbed_user)
-      allow(GithubService).to receive(:find_events).with('slague').and_return(stubbed_events)
+      allow(GithubService).to receive(:find_events).with('slague', access_token).and_return(stubbed_events)
 
       github_user = GithubUser.create_github_user(access_token)
-      events = github_user.events
+      events = github_user.events(access_token)
+
       event = events.first
       event2 = events.second
 

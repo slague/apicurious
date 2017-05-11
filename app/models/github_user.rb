@@ -31,8 +31,10 @@ class GithubUser
     end
   end
 
-  def number_of_starred_repos(access_token)
-    GithubService.find_starred_repos(access_token).count
+  def starred_repos(access_token)
+    GithubService.find_starred_repos(access_token).map do |raw_repo|
+      Repo.new(raw_repo)
+    end
   end
 
   def repos(access_token)
@@ -47,8 +49,8 @@ class GithubUser
     end
   end
 
-  def events
-    GithubService.find_events(login).map do |raw_event|
+  def events(access_token)
+    GithubService.find_events(login, access_token).map do |raw_event|
       Event.new(raw_event)
     end
   end

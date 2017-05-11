@@ -31,7 +31,7 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4939'
+      - '4938'
       X-Ratelimit-Reset:
       - '1494524228'
       Cache-Control:
@@ -67,9 +67,9 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Served-By:
-      - 769054b6618fd34f3638f01469b229db
+      - 075bb2f6b7031ca3c0e69edb17939fae
       X-Github-Request-Id:
-      - C613:3FF6:53C4D27:683ED3E:591494F0
+      - C618:3FFB:80F607A:A09A368:591494F1
     body:
       encoding: ASCII-8BIT
       string: '{"login":"slague","id":21252193,"avatar_url":"https://avatars3.githubusercontent.com/u/21252193?v=3","gravatar_id":"","url":"https://api.github.com/users/slague","html_url":"https://github.com/slague","followers_url":"https://api.github.com/users/slague/followers","following_url":"https://api.github.com/users/slague/following{/other_user}","gists_url":"https://api.github.com/users/slague/gists{/gist_id}","starred_url":"https://api.github.com/users/slague/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/slague/subscriptions","organizations_url":"https://api.github.com/users/slague/orgs","repos_url":"https://api.github.com/users/slague/repos","events_url":"https://api.github.com/users/slague/events{/privacy}","received_events_url":"https://api.github.com/users/slague/received_events","type":"User","site_admin":false,"name":"Stephanie

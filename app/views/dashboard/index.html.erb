@@ -29,35 +29,64 @@
     <div class="col m9 s12">
 
       <div class="col m2 12"><h6><strong>Overview</div>
-      <div class="col m2 12"><h6><strong>Repositories <%= @github_user.repos(current_user.oauth_token).count %></h6></div>
-       <!--  @github_user.repos(current_user.oauth_token).each do |repo|
-       repo.name <br>
-        end  -->
+      <div class="col m3 12">
+        <details close>
+          <summary>Repositories <%= @github_user.repos(current_user.oauth_token).count %></summary>
+            <% @github_user.repos(current_user.oauth_token).each do |repo| %>
+            <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a>
+            <% end %>
+          </details></div>
 
-      <div class="col m2 12"><h6><strong>Stars <%= @github_user.number_of_starred_repos(current_user.oauth_token) %></h6></div>
+      <div class="col m2 12">
+        <details close>
+          <summary>Stars <%= @github_user.starred_repos(current_user.oauth_token).count %></summary>
+            <% @github_user.starred_repos(current_user.oauth_token).each do |repo|  %>
+              <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a>
+              <% end %>
+            </details></div>
 
-      <div class="col m2 12"><h6><strong>Followers <%= @github_user.followers(current_user.oauth_token).count %></h6></div>
-          <!-- @github_user.followers(current_user.oauth_token).each do |follower| </h6> -->
-                             <!-- follower.login -->
-                              <!-- end -->
+      <div class="col m2 12">
+        <details close>
+          <summary>Followers <%= @github_user.followers(current_user.oauth_token).count %></summary>
+            <% @github_user.followers(current_user.oauth_token).each do |follower| %>
+            <a href="https://github.com/<%=follower.login%>"><%= follower.login %></a>
+            <% end %>
+        </details></div>
 
-       <div class="col m2 12"><h6><strong>Following <%= @github_user.following(current_user.oauth_token).count %></h6></div>
-           <!-- @github_user.following(current_user.oauth_token).each do |followed| </h6>
-                             followed.login
-                              end  -->
+       <div class="col m2 12">
+         <details close>
+           <summary>Following <%= @github_user.following(current_user.oauth_token).count %></summary>
+            <% @github_user.following(current_user.oauth_token).each do |followed| %>
+            <a href="https://github.com/<%=followed.login%>"><%= followed.login %></a>
+            <% end %>
+        </details></div>
 
+  <br><hr><br>
       </div>
 
-      <div class"row"></div>
-      <div class"row"></div>
-      <div class"row"></div>
-      <div class="divider"></div>
 
         <div class="col m9 s12">
-          <div class="col m5 12"><h5><strong>Recent Activity</h5>
-                            <% @github_user.events.each do |event| %>
-                             <p><%= event.repo[:name]%>, <%= event.type%>, <%= event.date %></p><br>
-                             <% end %></div>
+
+          <div class="col m5 12"><h6><strong>Recent Activity</h6></div><br><br>
+
+                                <% @github_user.events(current_user.oauth_token).first(6).each do |event| %>
+            <div class="col s12 m5">
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <a href="https://github.com/<%=event.repo[:name]%>"><%= event.repo[:name]%></a>
+                </div>
+                <div class="card-action">
+                  <%= event.type%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= event.date %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% end %>
     </div>
   </div>
-</div>
+
+  <div class="row">
+     <div class="col s6 offset-s3"><img width="650" src="https://i.stack.imgur.com/ElvLA.png"></div>
+   </div>

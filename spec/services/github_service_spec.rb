@@ -86,7 +86,7 @@ describe GithubService do
   context '.find_events', vcr: true do
     it 'returns a collection of events' do
       github_user = GithubUser.create_github_user(access_token)
-      events = GithubService.find_events(github_user.login)
+      events = GithubService.find_events(github_user.login, access_token)
       event = events.first
 
       expect(events).to be_an(Array)
