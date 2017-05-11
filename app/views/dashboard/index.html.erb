@@ -33,7 +33,7 @@
         <details close>
           <summary>Repositories <%= @github_user.repos(current_user.oauth_token).count %></summary>
             <% @github_user.repos(current_user.oauth_token).each do |repo| %>
-            <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a>
+            <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a><br>
             <% end %>
           </details></div>
 
@@ -41,7 +41,7 @@
         <details close>
           <summary>Stars <%= @github_user.starred_repos(current_user.oauth_token).count %></summary>
             <% @github_user.starred_repos(current_user.oauth_token).each do |repo|  %>
-              <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a>
+              <a href="https://github.com/<%=@github_user.login%>/<%=repo.name%>"><%= repo.name%></a><br>
               <% end %>
             </details></div>
 
@@ -49,7 +49,7 @@
         <details close>
           <summary>Followers <%= @github_user.followers(current_user.oauth_token).count %></summary>
             <% @github_user.followers(current_user.oauth_token).each do |follower| %>
-            <a href="https://github.com/<%=follower.login%>"><%= follower.login %></a>
+            <a href="https://github.com/<%=follower.login%>"><%= follower.login %></a><br>
             <% end %>
         </details></div>
 
@@ -57,7 +57,7 @@
          <details close>
            <summary>Following <%= @github_user.following(current_user.oauth_token).count %></summary>
             <% @github_user.following(current_user.oauth_token).each do |followed| %>
-            <a href="https://github.com/<%=followed.login%>"><%= followed.login %></a>
+            <a href="https://github.com/<%=followed.login%>"><%= followed.login %></a><br>
             <% end %>
         </details></div>
 
